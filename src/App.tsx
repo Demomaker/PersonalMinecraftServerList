@@ -4,6 +4,7 @@ import useApi from './services/useApi';
 import MinecraftServerItem from './components/MinecraftServer';
 import useMinecraftServer, { MinecraftServer } from './hooks/useMinecraftServer';
 import styled from 'styled-components';
+import $ from 'jquery';
 
 const ServerList = styled.div`
   display: flex;
@@ -19,6 +20,14 @@ const StyledServerRow = styled.div`
   align-items: center;
   width: 100%;
   background-color: lightgrey;
+`;
+
+const StyledInputRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 `;
 
 const DEFAULT_MINECRAFT_PORT = 25565
@@ -120,10 +129,11 @@ function App() {
     <div className="App">
       <>
         <h1>Personal Minecraft Server List</h1>
+        <StyledInputRow>
         <input ref={addressInput} type='text' placeholder='Address' /><input ref={portInput} type='text' placeholder='Port' /><button onClick={addServer}>Add Server</button>
-        <label>Import</label><input ref={fileImportInput} type='file' onChange={importServers}/>
-        <button onClick={pingServers}>Refresh</button>
+        <input ref={fileImportInput} type='file' onChange={importServers}/>
         <button onClick={exportServers}>Export</button>
+        </StyledInputRow>
         <ServerList>
           {serverList.map((server, index) => {return <StyledServerRow key={index}><MinecraftServerItem server={server} /><button onClick={() => {removeServer(index)}}>Remove</button></StyledServerRow>})}
         </ServerList>

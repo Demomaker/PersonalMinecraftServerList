@@ -49,21 +49,7 @@ const useMinecraftServer = () => {
     }
 
     const initialList = useMemo(() : MinecraftServer[] => {
-        return [{
-            serverId: generateServerId(),
-            address: 'mc.hypixel.net',
-            port: 25565,
-            description: 'WWWWWWWWWWWW',
-            version: {
-                name: '1.8',
-                protocol: 300
-            },
-            players: {
-                max: 20000,
-                online: 400,
-                sample: 'lol'
-            }
-        }]
+        return []
     }, []);
 
     return {
